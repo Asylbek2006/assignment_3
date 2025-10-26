@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Орташа граф</title>
+    <style>
+        .container { margin: 20px; font-family: Arial, sans-serif; }
+        .graph { border: 1px solid #ccc; padding: 20px; margin: 10px 0; }
+        .node { fill: #4CAF50; stroke: #388E3C; stroke-width: 2; }
+        .edge { stroke: #2196F3; stroke-width: 2; }
+        .mst-edge { stroke: #FF5722; stroke-width: 3; }
+        .label { font-size: 12px; text-anchor: middle; }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <h1>Орташа граф</h1>
+        <p>Төбелер: 5, Қырлар: 5</p>
+        <div class='graph'>
+            <h3>Бастапқы граф</h3>
+            <svg width='600' height='400'>
+                <circle class='node' cx='450' cy='200' r='20'/>
+                <text class='label' x='450' y='205'>A</text>
+                <circle class='node' cx='346' cy='342' r='20'/>
+                <text class='label' x='346' y='347'>B</text>
+                <circle class='node' cx='178' cy='288' r='20'/>
+                <text class='label' x='178' y='293'>C</text>
+                <circle class='node' cx='178' cy='111' r='20'/>
+                <text class='label' x='178' y='116'>D</text>
+                <circle class='node' cx='346' cy='57' r='20'/>
+                <text class='label' x='346' y='62'>E</text>
+                <line class='mst-edge' x1='450' y1='200' x2='346' y2='342'/>
+                <text class='label' x='398' y='266' fill='#FF5722'>2</text>
+                <line class='mst-edge' x1='450' y1='200' x2='178' y2='288'/>
+                <text class='label' x='314' y='239' fill='#FF5722'>3</text>
+                <line class='mst-edge' x1='346' y1='342' x2='178' y2='111'/>
+                <text class='label' x='262' y='221' fill='#FF5722'>1</text>
+                <line class='edge' x1='178' y1='288' x2='346' y2='57'/>
+                <text class='label' x='262' y='167' fill='#2196F3'>4</text>
+                <line class='mst-edge' x1='178' y1='111' x2='346' y2='57'/>
+                <text class='label' x='262' y='79' fill='#FF5722'>2</text>
+            </svg>
+        </div>
+        <div>
+            <h3>Minimum Spanning Tree (MST)</h3>
+            <p><strong>Қызыл сызықтар</strong> - MST құрамындағы қырлар</p>
+            <p><strong>Көк сандар</strong> - қырлардың салмақтары</p>
+            <p><strong>MST жалпы құны: 8</strong></p>
+        </div>
+    </div>
+</body>
+</html>

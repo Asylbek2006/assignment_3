@@ -142,6 +142,43 @@ This project is open-source and can be used for educational purposes or research
 * **Future Improvements**: Lists potential enhancements for the project.
 * **License**: If applicable, specifies the licensing terms for the project.
 
+
+# Bonus Assignment: Graph Visualization and Algorithm Analysis
+
+##  Project Overview
+
+This bonus assignment extends the main MST (Minimum Spanning Tree) project by implementing comprehensive graph visualization capabilities and detailed performance analysis between Prim's and Kruskal's algorithms.
+
+## Key Features Implemented
+
+### 1. **Interactive Graph Visualization**
+- **SVG-based visualizations** for three different graph sizes
+- **Color-coded edges**: Blue for regular edges, Red for MST edges
+- **Weight labels** displayed on all edges
+- **Circular node layout** for optimal visibility
+- **Responsive HTML output** that works in any modern browser
+
+### 2. **Three Graph Types Generated**
+- **Small Graph**: 3 vertices, 3 edges (Triangle configuration)
+- **Medium Graph**: 5 vertices, 5 edges (Complex connections)
+- **Large Graph**: 10 vertices, 9 edges (Chain configuration)
+
+### 3. **Algorithm Performance Analysis**
+- **Execution time measurement** in milliseconds
+- **Operation counting** for both algorithms
+- **Comparative analysis** showing which algorithm performs better
+- **CSV export** for data analysis and chart generation
+
+## Technical Implementation
+
+![Bonus](images/Bonus_assig_output.png)
+### Visualization Approach
+```java
+// SVG Generation with MST Highlighting
+generateSVG(Graph graph, List<Edge> mstEdges, String filename, String title)
+
+
+
 ### **Conclusion:**
 
 This **`README.md`** file provides a comprehensive guide for understanding, running, and analyzing your project. It includes all the necessary instructions for setting up the project, running the algorithms, and interpreting the results. You can simply copy and paste this into your project’s **`README.md`** file.
