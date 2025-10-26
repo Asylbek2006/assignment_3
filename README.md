@@ -119,6 +119,13 @@ The performance of **Prim** and **Kruskal** algorithms is compared based on:
    Prim,4,42,0,42,0.002
    Kruskal,4,40,0,40,0.001
    ```
+   
+Charts
+
+![Ghart1](plots_charts/chart1.png)
+![Ghart2](plots_charts/chart2.png)
+![Ghart3](plots_charts/chart3.png)
+![Ghart4](plots_charts/chart4.png)
 
 ## Future Improvements
 
@@ -172,6 +179,11 @@ This bonus assignment extends the main MST (Minimum Spanning Tree) project by im
 ## Technical Implementation
 
 ![Bonus](images/Bonus_assig_output.png)
+![Graph1](images/graph1.png)
+![Graph2](images/graph2.png)
+![Graph3](images/graph3.png)
+
+
 ### Visualization Approach
 ```java
 // SVG Generation with MST Highlighting
