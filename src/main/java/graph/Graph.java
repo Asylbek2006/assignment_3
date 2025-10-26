@@ -11,12 +11,25 @@ public class Graph {
         this.nodes = new ArrayList<>(nodes);
         this.edges = new ArrayList<>(edges);
         this.adjacencyList = new HashMap<>();
+
+        // Түйіндер үшін көршілес тізімдер құру
         for (String node : nodes) {
-            adjacencyList.put(node, new ArrayList<>());
+            adjacencyList.put(node, new ArrayList<>()); // Әр түйін үшін жаңа бос тізім
         }
+
+        // Қабырғаларды қосу
         for (Edge edge : edges) {
+            // Түйіндер үшін көршілес тізімдерге қабырғаларды қосу
+            if (!adjacencyList.containsKey(edge.from)) {
+                adjacencyList.put(edge.from, new ArrayList<>());
+            }
             adjacencyList.get(edge.from).add(edge);
-            adjacencyList.get(edge.to).add(new Edge(edge.to, edge.from, edge.weight)); // Undirected
+
+            // Екі жақты граф үшін көршілес тізімдерге қабырғаларды қосу
+            if (!adjacencyList.containsKey(edge.to)) {
+                adjacencyList.put(edge.to, new ArrayList<>());
+            }
+            adjacencyList.get(edge.to).add(new Edge(edge.to, edge.from, edge.weight));
         }
     }
 

@@ -27,27 +27,30 @@ public class Kruskal {
         public UnionFind(List<String> nodes) {
             parent = new HashMap<>();
             rank = new HashMap<>();
+            // Әрбір түйінді бастапқыда өзін-өзі ата-ана ретінде орнатамыз
             for (String node : nodes) {
-                parent.put(node, node);
-                rank.put(node, 0);
+                parent.putIfAbsent(node, node);  // Егер түйіннің ата-анасы жоқ болса, оны өзін-өзі көрсетеміз
+                rank.putIfAbsent(node, 0);       // Әр түйіннің бастапқы рангі 0 болады
             }
         }
 
         public String find(String node, int[] ops) {
+            // Егер түйіннің ата-анасы өзінен өзгеше болса, ата-ананы қайта іздеу
             if (!parent.get(node).equals(node)) {
-                parent.put(node, find(parent.get(node), ops)); // Path compression
+                parent.put(node, find(parent.get(node), ops)); // Путь қысқарту (Path Compression)
                 ops[0]++;
             }
             ops[0]++;
-            return parent.get(node);
+            return parent.get(node); // Ата-анасын қайтарады
         }
 
         public void union(String node1, String node2, int[] ops) {
             String root1 = find(node1, ops);
             String root2 = find(node2, ops);
-            if (root1.equals(root2)) return;
+            if (root1.equals(root2)) return; // Егер түйіндер бір ата-анамен болса, біріктіруге болмайды
 
             ops[0]++;
+            // Қосылған екі түйіннің рангін салыстыру арқылы біріктіру
             if (rank.get(root1) < rank.get(root2)) {
                 parent.put(root1, root2);
             } else if (rank.get(root1) > rank.get(root2)) {
@@ -65,7 +68,7 @@ public class Kruskal {
 
         List<Edge> edges = new ArrayList<>(graph.getEdges());
         edges.sort(Comparator.naturalOrder());
-        operations[0] += edges.size() * (int) Math.log(edges.size()); // Approximate sorting cost
+        operations[0] += edges.size() * (int) Math.log(edges.size()); // Алдын ала сұрыптау шығындарын бағалау
 
         UnionFind uf = new UnionFind(graph.getNodes());
         List<Edge> mstEdges = new ArrayList<>();
@@ -81,7 +84,7 @@ public class Kruskal {
             }
         }
 
-        // Check if MST is valid (connected graph)
+        // MST дұрыс құрылмаған жағдайда тексеру (граф байланысқан болуы керек)
         String root = uf.find(graph.getNodes().get(0), operations);
         boolean connected = true;
         for (String node : graph.getNodes()) {

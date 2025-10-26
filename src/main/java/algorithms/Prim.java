@@ -38,12 +38,12 @@ public class Prim {
         visited.add(startNode);
         for (Edge edge : graph.getAdjacencyList().get(startNode)) {
             pq.add(edge);
-            operations++; // Insert to PQ
+            operations++;
         }
 
         while (!pq.isEmpty() && visited.size() < nodes.size()) {
             Edge minEdge = pq.poll();
-            operations++; // Extract-min
+            operations++;
             String toNode = minEdge.to;
 
             if (visited.contains(toNode)) {
@@ -53,17 +53,16 @@ public class Prim {
             visited.add(toNode);
             mstEdges.add(minEdge);
             totalCost += minEdge.weight;
-            operations++; // Add to MST
+            operations++;
 
             for (Edge nextEdge : graph.getAdjacencyList().get(toNode)) {
                 if (!visited.contains(nextEdge.to)) {
                     pq.add(nextEdge);
-                    operations++; // Insert to PQ
+                    operations++;
                 }
             }
         }
 
-        // Check if MST is valid
         if (visited.size() != nodes.size()) {
             return new Result(new ArrayList<>(), -1, operations, 0);
         }
