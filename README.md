@@ -1,68 +1,149 @@
-# Assignment 3: Optimization of a City Transportation Network (Minimum Spanning Tree)
 
-## Overview
-This project implements **Prim's** and **Kruskal's** algorithms to find the Minimum Spanning Tree (MST) for a city transportation network, ensuring all districts are connected with minimal construction cost. The implementation is in **Java**, using a custom graph structure (`Graph.java`, `Edge.java`) for the **bonus section**. The project meets all requirements: input/output via JSON, automated JUnit tests, 30 datasets (10 small, 10 medium, 10 large), and graph visualizations.
+---
 
-## Repository Structure
-- `pom.xml`: Maven configuration with Gson and JUnit 5.
-- `data/ass_3_input.json`: 30 graphs (10 small: 4–6 vertices, 10 medium: 10–15 vertices, 10 large: 20–30 vertices).
-- `data/ass_3_output.json`: Generated results (MST edges, total cost, operations count, execution time).
-- `graph_images/`: 30 PNG images visualizing each graph (generated via Graphviz).
-- `src/main/java/`: Source code (`Graph`, `Edge`, `Prim`, `Kruskal`, `Main`).
-- `src/test/java/`: JUnit 5 tests for correctness and performance.
+# Minimum Spanning Tree (MST) Optimization
 
-## Input Data
-The input file `data/ass_3_input.json` contains 30 graphs:
-- **Small**: 4–6 vertices, 5–10 edges (for correctness).
-- **Medium**: 10–15 vertices, 15–30 edges (for moderate performance).
-- **Large**: 20–30 vertices, 30–50 edges (for scalability).
+## Project Overview
 
-Each graph has an `id`, `nodes`, and `edges` (with `from`, `to`, `weight`).
+This project is focused on optimizing a city's transportation network by applying **Prim's** and **Kruskal's** algorithms to construct a Minimum Spanning Tree (MST). The goal is to connect all the city's districts with the minimum possible construction cost. The project compares the efficiency of both algorithms and analyzes their performance on different datasets.
 
-## Algorithm Implementation
-- **Prim's Algorithm**: Uses a priority queue (O(E log V)). Operations counted: insert, extract-min, and edge additions.
-- **Kruskal's Algorithm**: Uses Union-Find with path compression and rank (O(E log E)). Operations counted: sorting, find, union.
-- Both handle disconnected graphs by returning `total_cost = -1`.
+## Project Structure
 
-## Results
-Results are saved in `data/ass_3_output.json`. Example summary (actual values depend on execution):
+`Main.java`: The main file that processes graphs and outputs the results in both **JSON** and **CSV** formats.
+`Graph.java`: Defines the graph structure, including nodes and edges.
+`Edge.java`: Defines the edges of the graph.
+`Prim.java`: Implements Prim’s algorithm to find the MST.
+`Kruskal.java`: Implements Kruskal’s algorithm to find the MST.
 
-| Graph ID | Type   | Vertices | Edges | Prim Cost | Prim Time (ms) | Prim Ops | Kruskal Cost | Kruskal Time (ms) | Kruskal Ops |
-|----------|--------|----------|-------|-----------|----------------|----------|--------------|-------------------|-------------|
-| 1        | Small  | 5        | 7     | 16        | 0.12           | 15       | 16           | 0.09              | 35          |
-| 11       | Medium | 11       | 15    | 147       | 0.56           | 45       | 147          | 0.43              | 55          |
-| 21       | Large  | 26       | 39    | 325       | 1.23           | 120      | 325          | 1.11              | 150         |
+## Requirements
 
-## Comparison: Prim vs Kruskal
-### Theoretical Analysis
-- **Prim's**: O(E log V) using a binary heap. Efficient for dense graphs due to adjacency list traversal.
-- **Kruskal's**: O(E log E) due to edge sorting. Better for sparse graphs, as it processes all edges upfront.
+1. **Java 11 or higher**: The project uses Java for implementation.
+2. **Maven**: Used for managing dependencies (if applicable).
+3. **External Libraries**:
 
-### Practical Observations
-- **Small graphs**: Both algorithms are fast (<1ms). Kruskal slightly faster in sparse cases due to fewer operations in Union-Find vs. Prim's priority queue.
-- **Medium graphs**: Kruskal performs better in sparse graphs (E ≈ V), while Prim is comparable.
-- **Large graphs**: Prim may outperform in dense graphs (E >> V), but our datasets are relatively sparse, favoring Kruskal slightly.
-- **Operations**: Kruskal has higher counts due to sorting, while Prim's counts are lower in dense graphs.
+    * **Gson**: For processing JSON data.
+    * **JUnit**: For testing the algorithms (optional).
 
-## Conclusions
-- **Prim**: Preferred for dense graphs or when adjacency list representation is optimized.
-- **Kruskal**: Better for sparse graphs due to efficient edge sorting and Union-Find.
-- **Implementation Complexity**: Kruskal requires Union-Find (path compression + rank), while Prim relies on a priority queue. Both are manageable with Java’s built-in collections.
-- Our datasets are sparse (E ≈ V or E < V²), so Kruskal often shows better practical performance.
+   If you are using **Maven**, add the following dependencies in your **`pom.xml`** file:
 
-## Bonus: Graph Design
-- Implemented `Graph.java` and `Edge.java` for clean OOP design.
-- Graph uses adjacency list (for Prim) and edge list (for Kruskal).
-- Visualizations for all 30 graphs are in `graph_images/` (e.g., `graph_small_1.png`).
-    - Example for Graph ID 1: ![Small Graph 1](graph_images/graph_small_1.png)
+   ```xml
+   <dependency>
+       <groupId>com.google.code.gson</groupId>
+       <artifactId>gson</artifactId>
+       <version>2.10.1</version>
+   </dependency>
+   ```
 
-## Testing
-JUnit 5 tests in `src/test/java/algorithms/MSTTest.java` verify:
-- **Correctness**: Same total cost for Prim and Kruskal, V-1 edges, no cycles, connected components.
-- **Performance**: Non-negative execution time and operation counts.
-- **Edge Cases**: Disconnected graphs return -1 cost.
+## Installation
 
-## How to Run
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
+1. **Clone the repository** or download the ZIP file and extract it.
+2. **Setup**: Open the project in your preferred **IDE** (e.g., IntelliJ IDEA, Eclipse).
+3. **Build the project** (if using Maven, run `mvn clean install`).
+4. **Run the `Main.java` file** to process graphs and generate the output.
+
+## Usage
+
+1. **Input File**:
+
+    * The input graphs are described in the **`data/ass_3_input.json`** file.
+    * Each graph includes an **ID**, a list of **nodes**, and a list of **edges**.
+
+2. **Generating Output**:
+
+    * **`ass_3_output.json`** contains the results of the **Prim** and **Kruskal** algorithms.
+    * **`algorithm_analysis.csv`** contains performance data such as **execution time**, **operations count**, and **total cost**.
+
+3. **Running the Program**:
+
+    * The program automatically runs **Prim** and **Kruskal** algorithms on the input graph, then saves the results in the output files.
+
+4. **Viewing the CSV File**:
+
+    * The **`algorithm_analysis.csv`** file will contain the following columns:
+
+        * **Algorithm**: Name of the algorithm (Prim or Kruskal).
+        * **ArraySize**: Number of vertices in the graph.
+        * **Comparisons**: Number of comparisons made by the algorithm.
+        * **Swaps**: Number of swaps (if applicable).
+        * **ArrayAccesses**: Number of array accesses or operations.
+        * **ExecutionTime(ms)**: Time taken by the algorithm to execute, in milliseconds.
+
+Here are some screenshots of the CSV data analysis results:
+
+![CSV Screenshot 1](images/csv_data1.png)
+*Figure 1: Analysis results of the Prim and Kruskal algorithms.*
+
+![CSV Screenshot 2](images/csv_data2.png)
+*Figure 2: Comparison between operations count and execution time.*
+
+## How the Algorithms Work
+
+### **Prim’s Algorithm**
+
+* Prim's algorithm is a greedy algorithm that grows the MST one edge at a time, selecting the smallest weight edge that connects a new vertex to the tree. It is implemented using a priority queue to efficiently select the minimum edge.
+
+**Steps**:
+
+1. Start from an arbitrary node.
+2. Choose the minimum weight edge connecting a new node to the MST.
+3. Add the edge to the MST and repeat until all nodes are connected.
+
+### **Kruskal’s Algorithm**
+
+* Kruskal's algorithm is another greedy algorithm, but it works by sorting all edges and adding them to the MST if they don't form a cycle. It uses the Union-Find data structure to efficiently check for cycles.
+
+**Steps**:
+
+1. Sort all edges in non-decreasing order of their weight.
+2. Add edges to the MST, skipping any edge that forms a cycle.
+3. Repeat until the MST contains **V-1** edges, where **V** is the number of vertices.
+
+## Results and Analysis
+
+The performance of **Prim** and **Kruskal** algorithms is compared based on:
+
+* **Execution Time**: The time it takes for each algorithm to compute the MST.
+* **Operations Count**: The number of operations (comparisons, swaps, etc.) performed by the algorithm.
+* **Total Cost**: The total weight of the MST.
+
+## Example Output Files
+
+1. **JSON Output (`ass_3_output.json`)**:
+   The output file will contain the MST results for each graph, including the edges in the MST, total cost, and execution time for both Prim and Kruskal algorithms.
+
+2. **CSV Output (`algorithm_analysis.csv`)**:
+   The CSV file will have the following structure:
+
+   ```csv
+   Algorithm,ArraySize,Comparisons,Swaps,ArrayAccesses,ExecutionTime(ms)
+   Prim,4,42,0,42,0.002
+   Kruskal,4,40,0,40,0.001
+   ```
+
+## Future Improvements
+
+* **Dynamic Graph Generation**: The ability to generate random graphs for testing purposes.
+* **User Interface**: Create a graphical user interface (GUI) for easier interaction with the program.
+* **Optimizations**: Further optimizations to improve algorithm performance, especially on large datasets.
+
+## License
+
+This project is open-source and can be used for educational purposes or research. All rights reserved.
+
+---
+
+### **Explanation of Sections:**
+
+* **Project Overview**: Describes the purpose of the project.
+* **Installation**: Instructions for setting up and running the project.
+* **Usage**: Explains how to use the program, including input and output files.
+* **How the Algorithms Work**: Provides a brief explanation of the Prim and Kruskal algorithms.
+* **Results and Analysis**: Describes how to analyze the performance of both algorithms.
+* **Future Improvements**: Lists potential enhancements for the project.
+* **License**: If applicable, specifies the licensing terms for the project.
+
+### **Conclusion:**
+
+This **`README.md`** file provides a comprehensive guide for understanding, running, and analyzing your project. It includes all the necessary instructions for setting up the project, running the algorithms, and interpreting the results. You can simply copy and paste this into your project’s **`README.md`** file.
+
+
