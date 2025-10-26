@@ -5933,7 +5933,7 @@
         {"from": "XL2319", "to": "XL2320", "weight": 1386},
         {"from": "XL2320", "to": "XL2321", "weight": 1160},
         {"from": "XL2321", "to": "XL2322", "weight": 930},
-        {"from": "XL2322", "to": "XL2323", "weight": 856},
+        {"from": "XL2322", "to": "XL2323", "weight": 855},
         {"from": "XL2323", "to": "XL2324", "weight": 550},
         {"from": "XL2324", "to": "XL2325", "weight": 755},
         {"from": "XL2325", "to": "XL2326", "weight": 1271},
