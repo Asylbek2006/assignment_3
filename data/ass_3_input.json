@@ -5917,7 +5917,7 @@
         {"from": "XL2303", "to": "XL2304", "weight": 1133},
         {"from": "XL2304", "to": "XL2305", "weight": 545},
         {"from": "XL2305", "to": "XL2306", "weight": 1166},
-        {"from": "XL2306", "to": "XL2307", "weight": 824},
+        {"from": "XL2306", "to": "XL2307", "weight": 823},
         {"from": "XL2307", "to": "XL2308", "weight": 1291},
         {"from": "XL2308", "to": "XL2309", "weight": 1057},
         {"from": "XL2309", "to": "XL2310", "weight": 1205},
